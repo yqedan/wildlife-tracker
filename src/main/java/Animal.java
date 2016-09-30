@@ -40,6 +40,15 @@ public abstract class Animal implements CRUDable{
     }
   }
 
+  public static String getType(int id) {
+  try(Connection con = DB.sql2o.open()) {
+    String sql = "SELECT type FROM animals WHERE id = :id";
+    return con.createQuery(sql)
+      .addParameter("id", id)
+      .throwOnMappingFailure(false).executeAndFetchFirst(String.class);
+    }
+  }
+
   @Override
   public void update(){
 

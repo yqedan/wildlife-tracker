@@ -1,0 +1,25 @@
+<h3>Sightings</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Species</th>
+      <th>Type</th>
+      <th>Age</th>
+      <th>Health</th>
+      <th>Location</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  #foreach($sighting in $sightings)
+  <tr>
+    <td>$sighting.getId()</td>
+    <td>$sighting.getSpecies()</td>
+    <td>$sighting.getType()</td>
+    <td>$sighting.getAge()</td>
+    <td>$sighting.getHealth()</td>
+    <td>$sighting.getLocation()</td>
+    <td>$sighting.getFormattedDateTime()</td>
+  </tr>
+  #end
+</table>

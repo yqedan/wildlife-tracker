@@ -10,6 +10,10 @@ public class Sighting implements CRUDable{
   private String location;
   private String rangerName;
   private Timestamp time;
+  private String species;
+  private String type;
+  private String age;
+  private String health;
 
   public Sighting(int animalId, String location, String rangerName){
     if(location.equals("")){
@@ -20,6 +24,18 @@ public class Sighting implements CRUDable{
     }
     this.animalId = animalId;
     this.location = location;
+    this.type = Animal.getType(animalId);
+    if(type.equals("endangered")){
+      EndangeredAnimal endAnimal = EndangeredAnimal.find(animalId);
+      this.species = endAnimal.getName();
+      this.age = endAnimal.getAge();
+      this.health = endAnimal.getHealth();
+    }else{
+      NonEndangeredAnimal animal = NonEndangeredAnimal.find(animalId);
+      this.species = animal.getName();
+      this.age = "-";
+      this.health = "-";
+    }
     this.rangerName = rangerName;
     save();
   }
@@ -30,6 +46,22 @@ public class Sighting implements CRUDable{
 
   public int getAnimalId(){
     return animalId;
+  }
+
+  public String getSpecies(){
+    return species;
+  }
+
+  public String getType(){
+    return type;
+  }
+
+  public String getAge(){
+    return age;
+  }
+
+  public String getHealth(){
+    return health;
   }
 
   public String getLocation(){
@@ -52,11 +84,15 @@ public class Sighting implements CRUDable{
   @Override
   public void save(){
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO sightings (animalId, location, rangerName, time) VALUES (:animalId, :location, :rangerName, now())";
+      String sql = "INSERT INTO sightings (animalId, location, rangerName, time, species, type, age, health) VALUES (:animalId, :location, :rangerName, now(), :species, :type, :age, :health)";
       id = (int) con.createQuery(sql, true)
                     .addParameter("animalId", animalId)
                     .addParameter("location", location)
                     .addParameter("rangerName", rangerName)
+                    .addParameter("species", species)
+                    .addParameter("type", type)
+                    .addParameter("age", age)
+                    .addParameter("health", health)
                     .executeUpdate()
                     .getKey();
     }
