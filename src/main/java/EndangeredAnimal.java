@@ -21,6 +21,9 @@ public class EndangeredAnimal extends Animal{
   }
 
   public EndangeredAnimal(String name, int age, int health){
+    if(name.equals("")){
+      throw new IllegalArgumentException("Please enter the species you found!");
+    }
     this.name = name;
     if(age == 0){
       this.age = NEWBORN;

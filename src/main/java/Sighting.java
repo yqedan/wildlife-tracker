@@ -12,6 +12,12 @@ public class Sighting implements CRUDable{
   private Timestamp time;
 
   public Sighting(int animalId, String location, String rangerName){
+    if(location.equals("")){
+      throw new IllegalArgumentException("Please enter where you found this animal!");
+    }
+    if(location.equals("")){
+      throw new IllegalArgumentException("Please enter where you found this animal!");
+    }
     this.animalId = animalId;
     this.location = location;
     this.rangerName = rangerName;

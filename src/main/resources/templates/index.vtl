@@ -1,1 +1,79 @@
 <h4>Welcome to the Wildlife Tracker site!</h4>
+
+<h4>Add Animals</h4>
+
+<form action='/animals/new' method='post'>
+  <div class="form-group">
+    <label for="species">Enter the species</label>
+    <input id="species" name="species" class="form-control" type="text">
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="type" value="non-endangered" id="no" checked>
+      Non-Endangered
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="type" value="endangered" id="yes">
+      Endangered
+    </label>
+  </div>
+  <br>
+  <div id ="ifEndangered" style="display:none">
+    <p for="age">Enter the estimated health</p>
+    <div class="radio">
+      <label>
+        <input type="radio" name="health" value="0" checked>
+        Healthy
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="health" value="1">
+        Ill
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="health" value="2">
+        Okay
+      </label>
+    </div>
+    <br>
+    <p for="age">Enter the estimated age</p>
+    <div class="radio">
+      <label>
+        <input type="radio" name="age" value="0" checked>
+        Newborn
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="age" value="1">
+        Young
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="age" value="2">
+        Adult
+      </label>
+    </div>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-success">Add Animal</button>
+</form>
+
+
+<h4>Add Sighitings</h4>
+
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script>
+  $('#yes').click(function() {
+      $('#ifEndangered').slideDown();
+  });
+  $('#no').click(function() {
+      $('#ifEndangered').slideUp();
+  });
+</script>
