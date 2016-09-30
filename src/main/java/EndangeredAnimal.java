@@ -20,24 +20,24 @@ public class EndangeredAnimal extends Animal{
     type = TYPE;
   }
 
-  public EndangeredAnimal(String name, int age, int health){
+  public EndangeredAnimal(String name, int health, int age){
     if(name.equals("")){
       throw new IllegalArgumentException("Please enter the species you found!");
     }
     this.name = name;
-    if(age == 0){
-      this.age = NEWBORN;
-    }else if (age == 1){
-      this.age = YOUNG;
-    }else{
-      this.age = ADULT;
-    }
     if(health == 0){
       this.health = ILL;
     }else if (health == 1){
       this.health = OKAY;
     }else{
       this.health = HEALTHY;
+    }
+    if(age == 0){
+      this.age = NEWBORN;
+    }else if (age == 1){
+      this.age = YOUNG;
+    }else{
+      this.age = ADULT;
     }
     save();
   }
