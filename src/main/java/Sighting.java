@@ -1,6 +1,8 @@
+import org.sql2o.*;
 import java.util.List;
 import java.sql.Timestamp;
-import org.sql2o.*;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 public class Sighting implements CRUDable{
   private int id;
@@ -34,6 +36,11 @@ public class Sighting implements CRUDable{
 
   public Timestamp getTime(){
     return time;
+  }
+
+  public String getFormattedDateTime(){
+    SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMMM dd yyyy hh:mm a");
+    return formatter.format(time);
   }
 
   @Override

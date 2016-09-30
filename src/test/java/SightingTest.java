@@ -1,5 +1,8 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 public class SightingTest {
 
@@ -40,5 +43,12 @@ public class SightingTest {
     assertTrue(testSighting2.equals(Sighting.find(testSighting2.getId())));
   }
 
+  @Test
+  public void getFormattedDateTime_returnsFormattedTimeUpToTheMinute_true(){
+    Timestamp myTimestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
+    SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMMM dd yyyy hh:mm a");
+    String formattedDate = formatter.format(myTimestamp);
+    assertTrue(formattedDate.equals(Sighting.find(testSighting.getId()).getFormattedDateTime()));
+  }
 
 }
