@@ -1,4 +1,5 @@
 import java.util.List;
+import org.sql2o.*;
 
 public class EndangeredAnimal extends Animal{
   private String health;
@@ -36,6 +37,38 @@ public class EndangeredAnimal extends Animal{
       this.health = HEALTHY;
     }
     save();
+  }
+
+  public String getAge(){
+    return age;
+  }
+  public String getHealth(){
+    return health;
+  }
+
+  @Override
+  public boolean equals(Object otherEndAnimal){
+    if (!(otherEndAnimal instanceof EndangeredAnimal)) {
+     return false;
+   } else {
+     EndangeredAnimal newEndAnimal = (EndangeredAnimal) otherEndAnimal;
+     return age.equals(newEndAnimal.age) &&
+            health.equals(newEndAnimal.health) &&
+            super.equals(newEndAnimal);
+    }
+  }
+
+  @Override
+  public void save(){
+    super.save();
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE animals SET age = :age, health = :health WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("age", age)
+        .addParameter("health", health)
+        .addParameter("id",id)
+        .executeUpdate();
+    }
   }
 
   public static List<EndangeredAnimal> all(){

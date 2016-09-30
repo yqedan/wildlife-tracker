@@ -8,7 +8,7 @@ public class EndangeredAnimalTest {
 
   @Before
   public void setup(){
-    testEndAnimal = new EndangeredAnimal("flamingo",1,1);
+    testEndAnimal = new EndangeredAnimal("bald eagle",1,1);
   }
 
   @Test
@@ -16,4 +16,9 @@ public class EndangeredAnimalTest {
     assertTrue(testEndAnimal instanceof EndangeredAnimal);
   }
 
+  @Test
+  public void equals_returnsTrueIfNameHealthAndAgeAreTheSame_true(){
+    EndangeredAnimal testEndAnimal2 = new EndangeredAnimal("bald eagle",1,1);
+    assertTrue(testEndAnimal.equals(testEndAnimal2));
+  }
 }

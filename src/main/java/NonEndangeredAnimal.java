@@ -1,4 +1,5 @@
 import java.util.List;
+import org.sql2o.*;
 
 public class NonEndangeredAnimal extends Animal{
 
@@ -7,6 +8,7 @@ public class NonEndangeredAnimal extends Animal{
   static{
     type = TYPE;
   }
+
   public NonEndangeredAnimal(String name){
     this.name = name;
     save();

@@ -18,5 +18,11 @@ public class NonEndangeredAnimalTest {
     assertTrue(testAnimal instanceof NonEndangeredAnimal);
   }
 
+  @Test
+  public void equals_returnsTrueIfNameIsTheSame_true(){
+    NonEndangeredAnimal testAnimal2 = new NonEndangeredAnimal("monkey");
+    assertTrue(testAnimal.equals(testAnimal2));
+  }
+
 
 }
