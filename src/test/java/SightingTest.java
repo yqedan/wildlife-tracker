@@ -33,4 +33,12 @@ public class SightingTest {
     assertTrue(Sighting.all().get(1).equals(testSighting2));
   }
 
+
+  @Test
+  public void find_returnsSightingSameId_true() {
+    Sighting testSighting2 = new Sighting(testAnimal.getId(), "In the elements", "Joe Test");
+    assertTrue(testSighting2.equals(Sighting.find(testSighting2.getId())));
+  }
+
+
 }

@@ -30,4 +30,10 @@ public class EndangeredAnimalTest {
     assertTrue(EndangeredAnimal.all().get(0).equals(testEndAnimal));
     assertTrue(EndangeredAnimal.all().get(1).equals(testEndAnimal2));
   }
+
+  @Test
+  public void find_returnsNonEndangeredAnimalWithSameId_true() {
+    EndangeredAnimal testEndAnimal2 = new EndangeredAnimal("Bald Eagle",1,1);
+    assertTrue(testEndAnimal2.equals(EndangeredAnimal.find(testEndAnimal2.getId())));
+  }
 }

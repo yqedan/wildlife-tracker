@@ -61,16 +61,6 @@ public class Sighting implements CRUDable{
     }
   }
 
-  @Override
-  public void update(){
-
-  }
-
-  @Override
-  public void delete(){
-
-  }
-
   public static List<Sighting> all(){
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM sightings";
@@ -79,6 +69,21 @@ public class Sighting implements CRUDable{
   }
 
   public static Sighting find(int id){
-    return null;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM sightings WHERE id = :id";
+      return con.createQuery(sql)
+                .addParameter("id", id)
+                .executeAndFetchFirst(Sighting.class);
+    }
+  }
+
+  @Override
+  public void update(){
+
+  }
+
+  @Override
+  public void delete(){
+
   }
 }

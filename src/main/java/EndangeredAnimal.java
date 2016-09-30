@@ -75,13 +75,19 @@ public class EndangeredAnimal extends Animal{
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM animals WHERE type = :type";
       return con.createQuery(sql)
-                .addParameter("type",type)
+                .addParameter("type", type)
                 .throwOnMappingFailure(false)
                 .executeAndFetch(EndangeredAnimal.class);
     }
   }
 
   public static EndangeredAnimal find(int id){
-    return null;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM animals WHERE id = :id";
+      return con.createQuery(sql)
+                .addParameter("id", id)
+                .throwOnMappingFailure(false)
+                .executeAndFetchFirst(EndangeredAnimal.class);
+    }
   }
 }
