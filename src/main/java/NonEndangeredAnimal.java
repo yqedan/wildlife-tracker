@@ -1,10 +1,22 @@
+import java.util.List;
+
 public class NonEndangeredAnimal extends Animal{
 
-  public static void all(){
+  public static final String TYPE = "non-endangered";
 
+  static{
+    type = TYPE;
+  }
+  public NonEndangeredAnimal(String name){
+    this.name = name;
+    save();
   }
 
-  public static void find(int id){
+  public static List<NonEndangeredAnimal> all(){
+    return null;
+  }
 
+  public static NonEndangeredAnimal find(int id){
+    return null;
   }
 }
