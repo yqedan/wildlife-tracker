@@ -16,10 +16,6 @@ public class EndangeredAnimal extends Animal{
 
   public static final String TYPE = "endangered";
 
-  static{
-    type = TYPE;
-  }
-
   public EndangeredAnimal(String name, int health, int age){
     if(name.equals("")){
       throw new IllegalArgumentException("Please enter the species you found!");
@@ -39,6 +35,7 @@ public class EndangeredAnimal extends Animal{
     }else{
       this.age = ADULT;
     }
+    type = TYPE;
     save();
   }
 
@@ -78,7 +75,7 @@ public class EndangeredAnimal extends Animal{
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM animals WHERE type = :type";
       return con.createQuery(sql)
-                .addParameter("type", type)
+                .addParameter("type", TYPE)
                 .throwOnMappingFailure(false)
                 .executeAndFetch(EndangeredAnimal.class);
     }

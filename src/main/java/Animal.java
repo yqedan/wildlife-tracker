@@ -4,7 +4,7 @@ public abstract class Animal implements CRUDable{
 
   public int id;
   public String name;
-  public static String type;
+  public String type;
 
   public int getId(){
     return id;
@@ -12,6 +12,10 @@ public abstract class Animal implements CRUDable{
 
   public String getName(){
     return name;
+  }
+
+  public String getType(){
+    return type;
   }
 
   @Override

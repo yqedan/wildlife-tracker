@@ -5,12 +5,9 @@ public class NonEndangeredAnimal extends Animal{
 
   public static final String TYPE = "non-endangered";
 
-  static{
-    type = TYPE;
-  }
-
   public NonEndangeredAnimal(String name){
     this.name = name;
+    type = TYPE;
     save();
   }
 
@@ -18,7 +15,7 @@ public class NonEndangeredAnimal extends Animal{
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM animals WHERE type = :type";
       return con.createQuery(sql)
-                .addParameter("type", type)
+                .addParameter("type", TYPE)
                 .throwOnMappingFailure(false)
                 .executeAndFetch(NonEndangeredAnimal.class);
     }

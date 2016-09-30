@@ -70,6 +70,14 @@
   <div class="col-sm-6">
     <h4>Add Sighitings</h4>
     <form action="/sightings/new" method="post">
+      <select id='animalId' name='animalId' type='text' class="form-control">
+        #foreach($animal in $endAnimals)
+          <option value="$animal.getId()">$animal.getType() $animal.getName() $animal.getAge() $animal.getHealth()</option>
+        #end
+        #foreach($animal in $animals)
+          <option value="$animal.getId()">$animal.getName()</option>
+        #end
+      </select>
       <label for="rangerName">Enter your name</label>
       <input id="rangerName" name="rangerName" class="form-control" type="text">
       <label for="location">Enter the location</label>

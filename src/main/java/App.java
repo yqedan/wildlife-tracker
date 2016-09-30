@@ -1,7 +1,5 @@
 import java.util.HashMap;
 import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
 
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -16,10 +14,8 @@ public class App {
 
       get("/", (request, response) -> {
         Map<String, Object> model = new HashMap<String, Object>();
-        List<Animal> animals = new ArrayList<>();
-        animals.addAll(NonEndangeredAnimal.all());
-        animals.addAll(EndangeredAnimal.all());
-        model.put("animals", animals);
+        model.put("animals", NonEndangeredAnimal.all());
+        model.put("endAnimals", EndangeredAnimal.all());
         model.put("template", "templates/index.vtl");
         return new ModelAndView(model, layout);
      }, new VelocityTemplateEngine());
@@ -38,5 +34,15 @@ public class App {
        response.redirect("/");
        return null;
     });
+
+    post("/sightings/new", (request, response) -> {
+      String rangerName = request.queryParams("rangerName");
+      String location = request.queryParams("location");
+      int animalId = Integer.parseInt(request.queryParams("animalId"));
+      //TODO: catch exceptions here
+      Sighting sighting = new Sighting(animalId,location,rangerName);
+      response.redirect("/");
+      return null;
+   });
   }
 }
