@@ -15,8 +15,8 @@ public class Sighting implements CRUDable{
     if(location.equals("")){
       throw new IllegalArgumentException("Please enter where you found this animal!");
     }
-    if(location.equals("")){
-      throw new IllegalArgumentException("Please enter where you found this animal!");
+    if(rangerName.equals("")){
+      throw new IllegalArgumentException("Please enter your name!");
     }
     this.animalId = animalId;
     this.location = location;

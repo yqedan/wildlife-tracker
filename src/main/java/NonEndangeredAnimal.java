@@ -6,6 +6,9 @@ public class NonEndangeredAnimal extends Animal{
   public static final String TYPE = "non-endangered";
 
   public NonEndangeredAnimal(String name){
+    if(name.equals("")){
+      throw new IllegalArgumentException("Please enter the species you found!");
+    }
     this.name = name;
     type = TYPE;
     save();

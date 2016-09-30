@@ -3,7 +3,9 @@
 <div class="row">
   <div class="col-sm-6">
     <h4>Add Animals</h4>
-
+    #if($newAnimalMessage)
+      <p>$newAnimalMessage</p>
+    #end
     <form action='/animals/new' method='post'>
       <div class="form-group">
         <label for="species">Enter the species</label>
@@ -69,8 +71,11 @@
   </div>
   <div class="col-sm-6">
     <h4>Add Sighitings</h4>
+    #if($newSightingMessage)
+      <p>$newSightingMessage</p>
+    #end
     <form action="/sightings/new" method="post">
-      <select id='animalId' name='animalId' type='text' class="form-control">
+      <select name='animalId' type='text' class="form-control">
         #foreach($animal in $endAnimals)
           <option value="$animal.getId()">$animal.getType() $animal.getName() $animal.getAge() $animal.getHealth()</option>
         #end
