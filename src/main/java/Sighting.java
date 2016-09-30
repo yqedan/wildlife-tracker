@@ -72,7 +72,10 @@ public class Sighting implements CRUDable{
   }
 
   public static List<Sighting> all(){
-    return null;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM sightings";
+      return con.createQuery(sql).executeAndFetch(Sighting.class);
+    }
   }
 
   public static Sighting find(int id){

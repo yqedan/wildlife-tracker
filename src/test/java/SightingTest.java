@@ -26,4 +26,11 @@ public class SightingTest {
     assertTrue(testSighting.equals(testSighting2));
   }
 
+  @Test
+  public void all_returnsAllInstancesOfNonEndangeredAnimal_true(){
+    Sighting testSighting2 = new Sighting(testAnimal.getId(), "In the elements", "Joe Test");
+    assertTrue(Sighting.all().get(0).equals(testSighting));
+    assertTrue(Sighting.all().get(1).equals(testSighting2));
+  }
+
 }

@@ -24,5 +24,12 @@ public class NonEndangeredAnimalTest {
     assertTrue(testAnimal.equals(testAnimal2));
   }
 
+  @Test
+  public void all_returnsAllInstancesOfNonEndangeredAnimal_true(){
+    NonEndangeredAnimal testAnimal2 = new NonEndangeredAnimal("Elephant");
+    assertTrue(NonEndangeredAnimal.all().get(0).equals(testAnimal));
+    assertTrue(NonEndangeredAnimal.all().get(1).equals(testAnimal2));
+  }
+
 
 }
