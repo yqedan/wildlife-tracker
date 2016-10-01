@@ -4,7 +4,7 @@
   <div class="col-sm-6">
     <h4>Add Animals</h4>
     #if($newAnimalMessage)
-      <p>$newAnimalMessage</p>
+    <p>$newAnimalMessage</p>
     #end
     <form action='/animals/new' method='post'>
       <div class="form-group">
@@ -23,48 +23,49 @@
           Endangered
         </label>
       </div>
-      <div id ="ifEndangered" style="display:none">
-        <br>
-        <p for="age">Enter the estimated health</p>
-        <div class="radio">
-          <label>
-            <input type="radio" name="health" value="0" checked>
-            Ill
-          </label>
+      <div id ="ifEndangered">
+        <p>Enter the estimated health</p>
+        <div class="form-group">
+          <div class="radio">
+            <label>
+              <input type="radio" name="health" value="0" checked>
+              Ill
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="health" value="1">
+              Okay
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="health" value="2">
+              Healthy
+            </label>
+          </div>
         </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="health" value="1">
-            Okay
-          </label>
+        <p>Enter the estimated age</p>
+        <div class="form-group">
+          <div class="radio">
+            <label>
+              <input type="radio" name="age" value="0" checked>
+              Newborn
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="age" value="1">
+              Young
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="age" value="2">
+              Adult
+            </label>
+          </div>
         </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="health" value="2">
-            Healthy
-          </label>
-        </div>
-        <br>
-        <p for="age">Enter the estimated age</p>
-        <div class="radio">
-          <label>
-            <input type="radio" name="age" value="0" checked>
-            Newborn
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="age" value="1">
-            Young
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="age" value="2">
-            Adult
-          </label>
-        </div>
-        <br>
       </div>
       <button type="submit" class="btn btn-success">Add Animal</button>
     </form>
@@ -72,32 +73,38 @@
   <div class="col-sm-6">
     <h4>Add Sighitings</h4>
     #if($newSightingMessage)
-      <p>$newSightingMessage</p>
+    <p>$newSightingMessage</p>
     #end
     <form action="/sightings/new" method="post">
-      <select name='animalId' type='text' class="form-control">
-        #foreach($animal in $endAnimals)
+      <div class="form-group">
+        <label for="animalId">Pick the animal involved</label>
+        <select name='animalId' type='text' class="form-control">
+          #foreach($animal in $endAnimals)
           <option value="$animal.getId()">$animal.getType() $animal.getName() $animal.getAge() $animal.getHealth()</option>
-        #end
-        #foreach($animal in $animals)
+          #end
+          #foreach($animal in $animals)
           <option value="$animal.getId()">$animal.getName()</option>
-        #end
-      </select>
-      <label for="rangerName">Enter your name</label>
-      <input id="rangerName" name="rangerName" class="form-control" type="text">
-      <label for="location">Enter the location</label>
-      <input id="location" name="location" class="form-control" type="text">
-      <br>
+          #end
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="rangerName">Enter your name</label>
+        <input id="rangerName" name="rangerName" class="form-control" type="text">
+      </div>
+      <div class="form-group">
+        <label for="location">Enter the location</label>
+        <input id="location" name="location" class="form-control" type="text">
+      </div>
       <button type="submit" class="btn btn-success">Add Sighting</button>
     </form>
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script>
-  $('#yes').click(function() {
-      $('#ifEndangered').slideDown();
-  });
-  $('#no').click(function() {
-      $('#ifEndangered').slideUp();
-  });
+$('#yes').click(function() {
+  $('#ifEndangered').slideDown();
+});
+$('#no').click(function() {
+  $('#ifEndangered').slideUp();
+});
 </script>

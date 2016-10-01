@@ -102,12 +102,12 @@ public class Sighting implements CRUDable{
   @Override
   public boolean equals(Object otherSighting){
     if (!(otherSighting instanceof Sighting)) {
-     return false;
-   } else {
-     Sighting newSighting = (Sighting) otherSighting;
-     return animalId == newSighting.animalId &&
-     location.equals(newSighting.location) &&
-     rangerName.equals(newSighting.rangerName);
+      return false;
+    } else {
+      Sighting newSighting = (Sighting) otherSighting;
+      return animalId == newSighting.animalId &&
+      location.equals(newSighting.location) &&
+      rangerName.equals(newSighting.rangerName);
     }
   }
 

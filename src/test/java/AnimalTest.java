@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 public class AnimalTest {
-  
+
   @Rule
   public DatabaseRule database = new DatabaseRule();
 

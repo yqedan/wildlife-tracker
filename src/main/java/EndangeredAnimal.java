@@ -49,12 +49,12 @@ public class EndangeredAnimal extends Animal{
   @Override
   public boolean equals(Object otherEndAnimal){
     if (!(otherEndAnimal instanceof EndangeredAnimal)) {
-     return false;
-   } else {
-     EndangeredAnimal newEndAnimal = (EndangeredAnimal) otherEndAnimal;
-     return age.equals(newEndAnimal.age) &&
-            health.equals(newEndAnimal.health) &&
-            super.equals(newEndAnimal);
+      return false;
+    } else {
+      EndangeredAnimal newEndAnimal = (EndangeredAnimal) otherEndAnimal;
+      return age.equals(newEndAnimal.age) &&
+      health.equals(newEndAnimal.health) &&
+      super.equals(newEndAnimal);
     }
   }
 
@@ -64,10 +64,10 @@ public class EndangeredAnimal extends Animal{
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE animals SET age = :age, health = :health WHERE id = :id";
       con.createQuery(sql)
-        .addParameter("age", age)
-        .addParameter("health", health)
-        .addParameter("id",id)
-        .executeUpdate();
+         .addParameter("age", age)
+         .addParameter("health", health)
+         .addParameter("id",id)
+         .executeUpdate();
     }
   }
 
