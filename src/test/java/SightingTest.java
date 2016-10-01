@@ -30,6 +30,7 @@ public class SightingTest {
   }
 
   @Test
+  //tests save()
   public void all_returnsAllInstancesOfNonEndangeredAnimal_true(){
     Sighting testSighting2 = new Sighting(testAnimal.getId(), "In the elements", "Joe Test");
     assertTrue(Sighting.all().get(0).equals(testSighting));
@@ -48,6 +49,16 @@ public class SightingTest {
     SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMMM dd yyyy hh:mm a");
     String formattedDate = formatter.format(myTimestamp);
     assertTrue(formattedDate.equals(Sighting.find(testSighting.getId()).getFormattedDateTime()));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void sighting_throwsExceptionIfNoLocationIsGiven(){
+    Sighting testSighting2 = new Sighting(testAnimal.getId(), "In the elements", "");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void sighting_throwsExceptionIfNoRangerNameIsGiven(){
+    Sighting testSighting2 = new Sighting(testAnimal.getId(), "", "Joe Test");
   }
 
 }

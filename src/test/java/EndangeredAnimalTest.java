@@ -25,6 +25,7 @@ public class EndangeredAnimalTest {
   }
 
   @Test
+  //tests save()
   public void all_returnsAllInstancesOfEndangeredAnimal_true(){
     EndangeredAnimal testEndAnimal2 = new EndangeredAnimal("Blue Whale",1,1);
     assertTrue(EndangeredAnimal.all().get(0).equals(testEndAnimal));
@@ -36,4 +37,10 @@ public class EndangeredAnimalTest {
     EndangeredAnimal testEndAnimal2 = new EndangeredAnimal("Bald Eagle",1,1);
     assertTrue(testEndAnimal2.equals(EndangeredAnimal.find(testEndAnimal2.getId())));
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void endangeredAnimal_throwsExceptionIfNoNameIsGiven(){
+    EndangeredAnimal testEndAnimal2 = new EndangeredAnimal("",1,1);
+  }
+
 }

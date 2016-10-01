@@ -10,8 +10,9 @@ public class Sighting implements CRUDable{
   private String location;
   private String rangerName;
   private Timestamp time;
-  private String species;
+  //data from animalId stored in table
   private String type;
+  private String species;
   private String age;
   private String health;
 

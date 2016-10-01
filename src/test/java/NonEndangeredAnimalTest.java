@@ -25,6 +25,7 @@ public class NonEndangeredAnimalTest {
   }
 
   @Test
+  //tests save()
   public void all_returnsAllInstancesOfNonEndangeredAnimal_true(){
     NonEndangeredAnimal testAnimal2 = new NonEndangeredAnimal("Elephant");
     assertTrue(NonEndangeredAnimal.all().get(0).equals(testAnimal));
@@ -37,5 +38,9 @@ public class NonEndangeredAnimalTest {
     assertTrue(testAnimal2.equals(NonEndangeredAnimal.find(testAnimal2.getId())));
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void nonEndangeredAnimal_throwsExceptionIfNoNameIsGiven(){
+    NonEndangeredAnimal testAnimal2 = new NonEndangeredAnimal("");
+  }
 
 }
