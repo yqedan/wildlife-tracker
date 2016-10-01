@@ -79,7 +79,11 @@ CREATE TABLE sightings (
     animalid integer,
     location character varying,
     rangername character varying,
-    "time" timestamp without time zone
+    "time" timestamp without time zone,
+    species character varying,
+    type character varying,
+    age character varying,
+    health character varying
 );
 
 
@@ -125,6 +129,12 @@ ALTER TABLE ONLY sightings ALTER COLUMN id SET DEFAULT nextval('sightings_id_seq
 --
 
 COPY animals (id, name, health, age, type) FROM stdin;
+48	bald eagle	okay	newborn	endangered
+49	monkey	\N	\N	non-endangered
+50	bald eagle	\N	\N	non-endangered
+51	monkey	\N	\N	non-endangered
+52	octopus	\N	\N	non-endangered
+53	monkey	\N	\N	non-endangered
 \.
 
 
@@ -132,14 +142,16 @@ COPY animals (id, name, health, age, type) FROM stdin;
 -- Name: animals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Yusuf
 --
 
-SELECT pg_catalog.setval('animals_id_seq', 1, false);
+SELECT pg_catalog.setval('animals_id_seq', 53, true);
 
 
 --
 -- Data for Name: sightings; Type: TABLE DATA; Schema: public; Owner: Yusuf
 --
 
-COPY sightings (id, animalid, location, rangername, "time") FROM stdin;
+COPY sightings (id, animalid, location, rangername, "time", species, type, age, health) FROM stdin;
+11	49	nowhere	Yusuf	2016-09-30 16:53:49.675198	monkey	non-endangered	-	-
+12	48	Somewhere	Joe Schmow	2016-09-30 16:54:05.210726	bald eagle	endangered	newborn	okay
 \.
 
 
@@ -147,7 +159,7 @@ COPY sightings (id, animalid, location, rangername, "time") FROM stdin;
 -- Name: sightings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Yusuf
 --
 
-SELECT pg_catalog.setval('sightings_id_seq', 1, false);
+SELECT pg_catalog.setval('sightings_id_seq', 12, true);
 
 
 --
